@@ -13,7 +13,7 @@ public class EmailIdValidation {
 	
 	public static void main(String[] args) {
 		
-		boolean stillRunning, finished = true;
+		boolean stillRunning = true;
 		String scannerInput;
 		
 		Scanner scan = new Scanner(System.in);
@@ -25,39 +25,47 @@ public class EmailIdValidation {
 		
 		System.out.println("Welcome to Email Validation" + "\n");
 		
+		//main loop
 		while(stillRunning = true) {
-			System.out.println("Please enter the emails to validate'");
+			System.out.println("Please enter the emails to validate");
 			System.out.println("Enter 'F' when done");
-			while(finished = true) {
+			while(true) {
 				scannerInput = scan.next();
-				if(scannerInput.compareTo("F") == 0) {
+				if(scannerInput.compareToIgnoreCase("F") == 0) {
 					break;
 				}
 				emailList.add(scan.next());
 			}
+			System.out.println("Results:" + "\n");
 			for(String email : emailList) {
 				Matcher matcher = pattern.matcher(email);
-				System.out.println("Results:" + "\n");
-				System.out.println("E-mail: " + email + "is" + (matcher.matches() ? "valid":"invalid"));
+				System.out.println(email + " is " + (matcher.matches() ? " valid":" invalid"));
 				emailMap.put(email, matcher.matches());
 			}
-			
-			System.out.println("Type 'log' to view the emails attempted...");
-			System.out.println("Enter any key to continue or type 'exit' to exit");
-			scannerInput = scan.next();
-			if(scannerInput.compareTo("log") == 0) {
-				int numEntry = 0;
-				for(HashMap.Entry<String, Boolean> entry : emailMap.entrySet()) {
-					numEntry += 1;
-					String email = entry.getKey();
-					Boolean valid = entry.getValue();
-					System.out.println(numEntry + ": " + "Email: " + email + "Valid: " + valid );
+			//continue with email validation or access log of already processed emails
+			while(true) {
+				System.out.println("\n" +"Type 'log' to view all the emails attempted...");
+				System.out.println("Enter any key to continue or type 'exit' to exit");
+				scannerInput = scan.next();
+				if(scannerInput.compareTo("log") == 0) {
+					int numEntry = 0;
+					for(HashMap.Entry<String, Boolean> entry : emailMap.entrySet()) {
+						numEntry += 1;
+						String email = entry.getKey();
+						Boolean valid = entry.getValue();
+						System.out.println(numEntry + ": " + "Email: " + email + "\n" + " Validity: " + valid );
+					}
+				}else if(scannerInput.compareToIgnoreCase("exit") == 0) {
+					stillRunning = false;
+					break;
+				}else {
+					break;
 				}
-			}else if(scannerInput.compareTo("exit") == 0) {
+			}
+			if(stillRunning == false) {
 				break;
 			}
 		}
-		
 		scan.close();
 	}
 }
