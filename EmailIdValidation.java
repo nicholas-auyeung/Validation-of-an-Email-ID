@@ -1,5 +1,8 @@
 package emailvalidation;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,26 +13,36 @@ public class EmailIdValidation {
 	
 	public static void main(String[] args) {
 		
-		boolean stillRunning = true;
+		boolean stillRunning, finished = true;
+		String emailInput;
+		
+		Scanner scan = new Scanner(System.in);
+		
+		List <String> emailList = new ArrayList<String>();
+		HashMap<String, Boolean> emailMap = new HashMap<String, Boolean>();
+		
+		Pattern pattern = Pattern.compile(regex);
+		
 		
 		while(stillRunning = true) {
-			Scanner scan = new Scanner(System.in);
 			System.out.println("Welcome to Email Validation" + "\n");
-			System.out.println("Please enter the number of emails to validate'");
-			int numEmails = scan.nextInt();
-			String[] arrEmails = new String[numEmails];
-			System.out.println("Type the " + numEmails + "proceed by pressing 'Enter' after each one");
-			for(int i = 0; i < arrEmails.length; i++) {
-				arrEmails[i] = scan.next();
+			System.out.println("Please enter the emails to validate'");
+			System.out.println("Type 'F' when done");
+			while(finished = true) {
+				emailInput = scan.next();
+				if(emailInput.compareTo("F") == 0) {
+					break;
+				}
+				emailList.add(scan.next());
 			}
-			Pattern pattern = Pattern.compile(regex);
-			for(String email : arrEmails) {
+			for(String email : emailList) {
 				Matcher matcher = pattern.matcher(email);
 				System.out.println("E-mail: " + email + "is" + (matcher.matches() ? "valid":"invalid"));
 			}
 			
 			
+			
 			scan.close();
-		
+		}
 	}
 }
