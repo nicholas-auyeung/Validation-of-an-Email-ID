@@ -37,6 +37,7 @@ public class EmailIdValidation {
 				emailList.add(scan.next());
 			}
 			System.out.println("Results:" + "\n");
+			//checking emails against regex parser
 			for(String email : emailList) {
 				Matcher matcher = pattern.matcher(email);
 				System.out.println(email + " is " + (matcher.matches() ? " valid":" invalid"));
