@@ -20,10 +20,13 @@ This program validates user inputted e-mail IDs allowing for non case sensitive 
 
 ## Usage
 	Once run, the console will welcome and prompt the user for the email IDs that they wish to validate
-insert image here
+![](screenshots/email_input.png)
 
 	The console will then output each email ID with their corresponding validation values
-insert image here
+![](screenshots/results.png)
 	
 	Following, the user will be asked if they want access the log of all emails that were processed by typing 'log', if they wish to continue inputting email IDs to be validated by typing any letter, or exit by typing 'exit'
-insert image here
+
+
+	If user enters 'log' the log will be output on the console
+![](screenshots/log.png)
