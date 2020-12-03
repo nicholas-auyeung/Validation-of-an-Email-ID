@@ -34,7 +34,7 @@ public class EmailIdValidation {
 				if(scannerInput.compareToIgnoreCase("F") == 0) {
 					break;
 				}
-				emailList.add(scan.next());
+				emailList.add(scannerInput);
 			}
 			System.out.println("Results:" + "\n");
 			//checking emails against regex parser
@@ -54,7 +54,7 @@ public class EmailIdValidation {
 						numEntry += 1;
 						String email = entry.getKey();
 						Boolean valid = entry.getValue();
-						System.out.println(numEntry + ": " + "Email: " + email + "\n" + " Validity: " + valid );
+						System.out.println(numEntry + ": " + "Email: " + email + "\n" + "   Validity: " + valid );
 					}
 				}else if(scannerInput.compareToIgnoreCase("exit") == 0) {
 					stillRunning = false;
